@@ -3,11 +3,11 @@ services:
   my_books:
     build: 
       context: my_books/
-      args:
-        HTTP_PROXY: "http://spb99-prx-a.gazprom-neft.local:8090"
-        HTTPS_PROXY: "http://spb99-prx-a.gazprom-neft.local:8090"
-        http_proxy: "http://spb99-prx-a.gazprom-neft.local:8090"
-        https_proxy: "http://spb99-prx-a.gazprom-neft.local:8090"
+      ##args:
+      ##  HTTP_PROXY: "http://spb99-prx-a.gazprom-neft.local:8090"
+      ##  HTTPS_PROXY: "http://spb99-prx-a.gazprom-neft.local:8090"
+      ##  http_proxy: "http://spb99-prx-a.gazprom-neft.local:8090"
+      ##  https_proxy: "http://spb99-prx-a.gazprom-neft.local:8090"
     image: vasire/my_book
     ports:
     - "8000:80"
