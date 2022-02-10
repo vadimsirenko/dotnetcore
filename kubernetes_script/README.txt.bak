@@ -1,0 +1,51 @@
+# Установить переменную окружения - каталог minikube
+env MINIKUBE_HOME - (string) sets the path for the .minikube directory that minikube uses for state/configuration. Please note: this is used only by minikube and does not affect anything related to Kubernetes tools such as kubectl.
+
+# Настройка по умолчанию на использование Hiper-V
+minikube config set driver hyperv
+
+# Создаем и запускаем кластер
+minikube start
+
+# Осанавливаем кластер
+minikube start
+
+# Добавлляем нод в кластер
+minikube node add 
+
+# Список нод в кластере
+minikube node list
+
+# Устанавливает лейбл на ноде 2
+kubectl label nodes minikube-m02 server=mssql
+
+# Запуск приложения - дашборда
+minikube dashboard
+
+# Добавление хранилища
+kubectl apply -f .\sql-persistent-volume.yaml
+
+# Обзор хранилища
+kubectl get pv sqldata
+
+# Добавление заявки на хранилище для ms sql
+kubectl apply -f .\claim-sql-persistent-volume.yaml
+
+# Обзор заявок на хранилище
+kubectl get pvc 
+
+# Созранение пароля SA в секретах
+kubectl create secret generic mssql --from-literal=SA_PASSWORD=Tr@nsF0rmer
+
+# Развертывание MS SQL
+kubectl apply -f .\sqldeployment.yaml
+
+# Список служб
+kubectl get services  
+
+# Логи пода
+kubectl get pods
+kubectl logs sql-584cdbcd89-m5m2t
+
+# Выгрузка определения Pod
+kubectl describe pods sql-584cdbcd89-m5m2t > R:\kubernetes_script/my_log.txt

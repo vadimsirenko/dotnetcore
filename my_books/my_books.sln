@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31912.275
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "my_books", "my_books\my_books.csproj", "{8064347D-802D-4C8F-A7F7-75F2D3713BBA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker", "docker", "{CC72E8AC-0338-4D50-BAA0-321BC1B1B2C7}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yaml = docker-compose.yaml
+		README.txt = README.txt
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8064347D-802D-4C8F-A7F7-75F2D3713BBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8064347D-802D-4C8F-A7F7-75F2D3713BBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8064347D-802D-4C8F-A7F7-75F2D3713BBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8064347D-802D-4C8F-A7F7-75F2D3713BBA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {82934088-1E7F-4410-9024-0D47370239FA}
+	EndGlobalSection
+EndGlobal

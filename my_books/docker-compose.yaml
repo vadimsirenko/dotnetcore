@@ -1,0 +1,21 @@
+version: '3'
+services: 
+  my_books:
+    build: 
+      context: my_books/
+      args:
+        HTTP_PROXY: "http://spb99-prx-a.gazprom-neft.local:8090"
+        HTTPS_PROXY: "http://spb99-prx-a.gazprom-neft.local:8090"
+        http_proxy: "http://spb99-prx-a.gazprom-neft.local:8090"
+        https_proxy: "http://spb99-prx-a.gazprom-neft.local:8090"
+    image: vasire/my_book
+    ports:
+    - "8000:80"
+    - "8001:443"
+    environment:
+      ASPNETCORE_URLS: "https://+;http://+"
+      ASPNETCORE_HTTPS_PORT: "8001"
+      ASPNETCORE_ENVIRONMENT: Development
+    volumes:
+      - ${APPDATA}\microsoft\UserSecrets\:/root/.microsoft/usersecrets
+      - ${USERPROFILE}\.aspnet\https:/root/.aspnet/https/ 
