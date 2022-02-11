@@ -1,13 +1,44 @@
-version: '3'
+﻿version: '3'
 services: 
+  mssql-server:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: mssql-server
+    hostname: mssql-server
+    ports:
+      - "1433:1433"
+      - "5022:5022"
+    volumes: 
+      - sqlsystem:/var/opt/mssql/
+      - sqldata:/var/opt/sqlserver/data
+      - sqllog:/var/opt/sqlserver/log
+      - sqlbackup:/var/opt/sqlserver/backup
+    environment:
+      SA_PASSWORD: "Tr@nsF0rmer"
+      ACCEPT_EULA : "Y"
+      MSSQL_PID : "Developer"
+      TZ : "Europe/Moscow"
+      MSSQL_LCID : "1049" # русский
+      MSSQL_COLLATION : "Cyrillic_General_CI_AS"
+      MSSQL_MEMORY_LIMIT_MB : "2048" #задает максимальный объем памяти (в МБ), который можно использовать SQL Server. По умолчанию он составляет 80% от общего объема физической памяти.
+      MSSQL_TCP_PORT : "1433"      
+      MSSQL_BACKUP_DIR : "/var/opt/sqlserver/backup" #Задайте расположение каталога резервного копирования по умолчанию.
+      MSSQL_DATA_DIR : "/var/opt/mssql/data" #Перейдите в каталог, где создаются новые базы данных файлы данных SQL Server (.mdf).
+      MSSQL_LOG_DIR : "/var/opt/mssql/log" #где создаются новые файлы журналов (LDF) базы данных SQL Server.
+      # MSSQL_DUMP_DIR : "/var/opt/mssql/dumps" #где SQL Server будет Депонировать дампы памяти и другие файлы для устранения неполадок по умолчанию.
+      MSSQL_ENABLE_HADR : "0" #Включение группы доступности. Например "1" включена и отключена "0" - репликация
+      MSSQL_AGENT_ENABLED : "true" #Включите агент SQL Server. Например «true» включен, и «false» отключена. По умолчанию агент отключен.
+      #MSSQL_MASTER_DATA_FILE" #Задает расположение файла данных базы данных master.
+      #MSSQL_ERROR_LOG_FILE" #Задает расположение файла журнала базы данных master.
+      #MSSQL_MASTER_LOG_FILE" #Задает расположение файлов журнала ошибок.
+    restart: always
   my_books:
     build: 
       context: my_books/
-      args:
-        HTTP_PROXY: "http://spb99-prx-a.gazprom-neft.local:8090"
-        HTTPS_PROXY: "http://spb99-prx-a.gazprom-neft.local:8090"
-        http_proxy: "http://spb99-prx-a.gazprom-neft.local:8090"
-        https_proxy: "http://spb99-prx-a.gazprom-neft.local:8090"
+      ## args:
+      ##   HTTP_PROXY: "http://spb99-prx-a.gazprom-neft.local:8090"
+      ##   HTTPS_PROXY: "http://spb99-prx-a.gazprom-neft.local:8090"
+      ##   http_proxy: "http://spb99-prx-a.gazprom-neft.local:8090"
+      ##   https_proxy: "http://spb99-prx-a.gazprom-neft.local:8090"
     image: vasire/my_book
     ports:
     - "8000:80"
@@ -19,3 +50,8 @@ services:
     volumes:
       - ${APPDATA}\microsoft\UserSecrets\:/root/.microsoft/usersecrets
       - ${USERPROFILE}\.aspnet\https:/root/.aspnet/https/ 
+volumes:
+  sqlsystem:
+  sqldata:
+  sqllog:
+  sqlbackup:
