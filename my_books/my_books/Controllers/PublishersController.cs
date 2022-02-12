@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using my_books.Data.Models;
 using my_books.Data.Services;
 using my_books.Data.ViewModels;
+using my_books.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,8 +28,7 @@ namespace my_books.Controllers
 
         [HttpGet("get-all-publishers")]
         public IActionResult GetAllPublishers(string sortBy, string searchString, int pageNumber)
-        {
-            try
+        {            try
             {
                 _logger.LogInformation("This is just a log in GetAllPublishers()");
                 var _result = _publishersService.GetAllPublishers(sortBy, searchString, pageNumber);
@@ -48,15 +48,14 @@ namespace my_books.Controllers
                 var newPublisher = _publishersService.AddPublisher(publisher);
                 return Created(nameof(AddPublisher), newPublisher);
             }
-            //catch (PublisherNameException ex)
-            //{
-            //    return BadRequest($"{ex.Message}, Publisher name: {ex.PublisherName}");
-            //}
+            catch (PublisherNameException ex)
+            {
+                return BadRequest($"{ex.Message}, Publisher name: {ex.PublisherName}");
+            }
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
-
         }
 
         [HttpGet("get-publisher-by-id/{id}")]
@@ -73,7 +72,6 @@ namespace my_books.Controllers
                 return NotFound();
             }
         }
-
 
         [HttpGet("get-publisher-books-with-authors/{id}")]
         public IActionResult GetPublisherData(int id)
