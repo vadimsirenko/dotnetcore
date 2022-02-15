@@ -14,14 +14,13 @@ namespace my_books.Exceptions
 {
     public static class ExceptionMiddlewareExtensions
     {
-        public static void ConfigureBuildInExceptionHandler(this IApplicationBuilder app /*, ILoggerFactory loggerFactory*/)
+        public static void ConfigureBuildInExceptionHandler(this IApplicationBuilder app , ILogger logger)
         {
             app.UseExceptionHandler(appError =>
             {
                 appError.Run(async context =>
                 {
-
-                   // var logger = loggerFactory.CreateLogger("ConfigureBuildInExceptionHandler");
+                    //var logger = loggerFactory.CreateLogger("ConfigureBuildInExceptionHandler");
 
                     context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
                     context.Response.ContentType = "application/json";
@@ -38,8 +37,8 @@ namespace my_books.Exceptions
                             Message = contextFeature.Error.Message,
                             Path = contextRequest.Path
                         }.ToString();
-
-                       // logger.LogError(errorVMString);
+                        
+                        logger.LogError(errorVMString);
 
                         await context.Response.WriteAsync(errorVMString);
                     }
