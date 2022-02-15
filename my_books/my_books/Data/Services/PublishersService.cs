@@ -1,5 +1,5 @@
 ﻿using my_books.Data.Models;
-
+using my_books.Data.Paging;
 using my_books.Data.ViewModels;
 using my_books.Exceptions;
 using System;
@@ -42,9 +42,8 @@ namespace my_books.Data.Services
 
             // Paging
             int pageSize = 5;
-            //allPublishers = PaginatedList<Publisher>.Create(allPublishers.AsQueryable(), pageNumber ?? 1, pageSize);
-            allPublishers = allPublishers.Where(n => n.Name.Contains(searchString, StringComparison.CurrentCultureIgnoreCase)).ToList();
-
+            allPublishers = PaginatedList<Publisher>.Create(allPublishers.AsQueryable(), pageNumber ?? 1, pageSize);
+           
             return allPublishers;
         } 
 

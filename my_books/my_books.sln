@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker", "docker", "{CC72E8
 		README.txt = README.txt
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "my_books_tests", "my_books_tests\my_books_tests.csproj", "{DFB0AB1A-EC92-4592-8069-3430AC58FA71}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{8064347D-802D-4C8F-A7F7-75F2D3713BBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8064347D-802D-4C8F-A7F7-75F2D3713BBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8064347D-802D-4C8F-A7F7-75F2D3713BBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFB0AB1A-EC92-4592-8069-3430AC58FA71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFB0AB1A-EC92-4592-8069-3430AC58FA71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFB0AB1A-EC92-4592-8069-3430AC58FA71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFB0AB1A-EC92-4592-8069-3430AC58FA71}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
