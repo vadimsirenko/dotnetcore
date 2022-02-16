@@ -17,19 +17,19 @@ services:
       ACCEPT_EULA : "Y"
       MSSQL_PID : "Developer"
       TZ : "Europe/Moscow"
-      MSSQL_LCID : "1049" # �������
+      MSSQL_LCID : "1049" # русский
       MSSQL_COLLATION : "Cyrillic_General_CI_AS"
-      MSSQL_MEMORY_LIMIT_MB : "2048" #������ ������������ ����� ������ (� ��), ������� ����� ������������ SQL Server. �� ��������� �� ���������� 80% �� ������ ������ ���������� ������.
+      MSSQL_MEMORY_LIMIT_MB : "2048" #задает максимальный объем памяти (в МБ), который можно использовать SQL Server. По умолчанию он составляет 80% от общего объема физической памяти.
       MSSQL_TCP_PORT : "1433"      
-      MSSQL_BACKUP_DIR : "/var/opt/sqlserver/backup" #������� ������������ �������� ���������� ����������� �� ���������.
-      MSSQL_DATA_DIR : "/var/opt/mssql/data" #��������� � �������, ��� ��������� ����� ���� ������ ����� ������ SQL Server (.mdf).
-      MSSQL_LOG_DIR : "/var/opt/mssql/log" #��� ��������� ����� ����� �������� (LDF) ���� ������ SQL Server.
-      # MSSQL_DUMP_DIR : "/var/opt/mssql/dumps" #��� SQL Server ����� ������������ ����� ������ � ������ ����� ��� ���������� ��������� �� ���������.
-      MSSQL_ENABLE_HADR : "0" #��������� ������ �����������. �������� "1" �������� � ��������� "0" - ����������
-      MSSQL_AGENT_ENABLED : "true" #�������� ����� SQL Server. �������� �true� �������, � �false� ���������. �� ��������� ����� ��������.
-      #MSSQL_MASTER_DATA_FILE" #������ ������������ ����� ������ ���� ������ master.
-      #MSSQL_ERROR_LOG_FILE" #������ ������������ ����� ������� ���� ������ master.
-      #MSSQL_MASTER_LOG_FILE" #������ ������������ ������ ������� ������.
+      MSSQL_BACKUP_DIR : "/var/opt/sqlserver/backup" #Задайте расположение каталога резервного копирования по умолчанию.
+      MSSQL_DATA_DIR : "/var/opt/mssql/data" #Перейдите в каталог, где создаются новые базы данных файлы данных SQL Server (.mdf).
+      MSSQL_LOG_DIR : "/var/opt/mssql/log" #где создаются новые файлы журналов (LDF) базы данных SQL Server.
+      # MSSQL_DUMP_DIR : "/var/opt/mssql/dumps" #где SQL Server будет Депонировать дампы памяти и другие файлы для устранения неполадок по умолчанию.
+      MSSQL_ENABLE_HADR : "0" #Включение группы доступности. Например "1" включена и отключена "0" - репликация
+      MSSQL_AGENT_ENABLED : "true" #Включите агент SQL Server. Например «true» включен, и «false» отключена. По умолчанию агент отключен.
+      #MSSQL_MASTER_DATA_FILE" #Задает расположение файла данных базы данных master.
+      #MSSQL_ERROR_LOG_FILE" #Задает расположение файла журнала базы данных master.
+      #MSSQL_MASTER_LOG_FILE" #Задает расположение файлов журнала ошибок.
     restart: always
   my_books:
     build: 

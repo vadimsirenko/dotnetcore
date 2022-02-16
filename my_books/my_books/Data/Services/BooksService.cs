@@ -23,8 +23,8 @@ namespace my_books.Data.Services
                 Title = book.Title,
                 Description = book.Description,
                 IsRead = book.IsRead,
-                DateRead = book.IsRead ? book.DateRead.Value : null,
-                Rate = book.IsRead ? book.Rate.Value : null,
+                DateRead = book.IsRead ? book.DateRead!.Value : null,
+                Rate = book.IsRead ? book.Rate!.Value : null,
                 Genre = book.Genre,
                 CoverUrl = book.CoverUrl,
                 DateAdded = DateTime.Now,
@@ -46,15 +46,15 @@ namespace my_books.Data.Services
         }
     
         public List<Book> GetAllBooks() => _context.Books.ToList();
-        public BookWithAuthorsVM GetBookById(int bookId) 
+        public BookWithAuthorsVM? GetBookById(int bookId) 
         {
             var _bookWithAuthors = _context.Books.Where(n => n.Id == bookId).Select(book => new BookWithAuthorsVM()
             {
                 Title = book.Title,
                 Description = book.Description,
                 IsRead = book.IsRead,
-                DateRead = book.IsRead ? book.DateRead.Value : null,
-                Rate = book.IsRead ? book.Rate.Value : null,
+                DateRead = book.IsRead ? book.DateRead!.Value : null,
+                Rate = book.IsRead ? book.Rate!.Value : null,
                 Genre = book.Genre,
                 CoverUrl = book.CoverUrl,
                 PublisherName = book.Publisher.Name,
@@ -64,7 +64,7 @@ namespace my_books.Data.Services
             return _bookWithAuthors;
         }
 
-        public Book UpdateBookById(int bookId, BookVM book)
+        public Book? UpdateBookById(int bookId, BookVM book)
         {
             var _book = _context.Books.FirstOrDefault(n => n.Id == bookId);
             if(_book != null)
@@ -72,8 +72,8 @@ namespace my_books.Data.Services
                 _book.Title = book.Title;
                 _book.Description = book.Description;
                 _book.IsRead = book.IsRead;
-                _book.DateRead = book.IsRead ? book.DateRead.Value : null;
-                _book.Rate = book.IsRead ? book.Rate.Value : null;
+                _book.DateRead = book.IsRead ? book.DateRead!.Value : null;
+                _book.Rate = book.IsRead ? book.Rate!.Value : null;
                 _book.Genre = book.Genre;
                 _book.CoverUrl = book.CoverUrl;
 

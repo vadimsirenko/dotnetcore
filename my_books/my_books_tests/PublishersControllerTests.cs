@@ -42,17 +42,17 @@ namespace my_books_tests
         {
             IActionResult actionResult = publishersController.GetAllPublishers("name_desc", "Publisher", 1);
             Assert.That(actionResult, Is.TypeOf<OkObjectResult>());
-            var actionResultData = (actionResult as OkObjectResult).Value as List<Publisher>;
-            Assert.That(actionResultData.First().Name, Is.EqualTo("Publisher 6"));
-            Assert.That(actionResultData.First().Id, Is.EqualTo(6));
-            Assert.That(actionResultData.Count, Is.EqualTo(5));
+            var actionResultData = (actionResult as OkObjectResult)!.Value as List<Publisher>;
+            Assert.That(actionResultData!.First().Name, Is.EqualTo("Publisher 6"));
+            Assert.That(actionResultData!.First().Id, Is.EqualTo(6));
+            Assert.That(actionResultData!.Count, Is.EqualTo(5));
 
             IActionResult actionResultSecondPage = publishersController.GetAllPublishers("name_desc", "Publisher", 2);
             Assert.That(actionResultSecondPage, Is.TypeOf<OkObjectResult>());
-            var actionResultDataSecondPage = (actionResultSecondPage as OkObjectResult).Value as List<Publisher>;
-            Assert.That(actionResultDataSecondPage.First().Name, Is.EqualTo("Publisher 1"));
-            Assert.That(actionResultDataSecondPage.First().Id, Is.EqualTo(1));
-            Assert.That(actionResultDataSecondPage.Count, Is.EqualTo(1));
+            var actionResultDataSecondPage = (actionResultSecondPage as OkObjectResult)!.Value as List<Publisher>;
+            Assert.That(actionResultDataSecondPage!.First().Name, Is.EqualTo("Publisher 1"));
+            Assert.That(actionResultDataSecondPage!.First().Id, Is.EqualTo(1));
+            Assert.That(actionResultDataSecondPage!.Count, Is.EqualTo(1));
         }
 
         [Test, Order(2)]
@@ -64,9 +64,9 @@ namespace my_books_tests
 
             Assert.That(actionResult, Is.TypeOf<OkObjectResult>());
 
-            var publisherData = (actionResult as OkObjectResult).Value as Publisher;
-            Assert.That(publisherData.Id, Is.EqualTo(1));
-            Assert.That(publisherData.Name, Is.EqualTo("publisher 1").IgnoreCase);
+            var publisherData = (actionResult as OkObjectResult)!.Value as Publisher;
+            Assert.That(publisherData!.Id, Is.EqualTo(1));
+            Assert.That(publisherData!.Name, Is.EqualTo("publisher 1").IgnoreCase);
         }
 
         [Test, Order(3)]

@@ -61,9 +61,9 @@ namespace my_books.Data.Services
             return _publisher;
         }
 
-        public Publisher GetPublisherById(int id) => _context.Publishers.FirstOrDefault(n => n.Id == id);
+        public Publisher? GetPublisherById(int id) => _context.Publishers.FirstOrDefault(n => n.Id == id);
 
-        public PublisherWithBooksAndAuthorsVM GetPublisherData(int publisherId)
+        public PublisherWithBooksAndAuthorsVM? GetPublisherData(int publisherId)
         {
             var _publisherData = _context.Publishers.Where(n => n.Id == publisherId)
                 .Select(n => new PublisherWithBooksAndAuthorsVM()

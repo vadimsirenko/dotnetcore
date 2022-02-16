@@ -53,7 +53,7 @@ namespace my_books_tests
             var result = publishersService.GetAllPublishers("", "3", null);
 
             Assert.That(result.Count, Is.EqualTo(1));
-            Assert.That(result.FirstOrDefault().Name, Is.EqualTo("Publisher 3"));
+            Assert.That(result.FirstOrDefault()!.Name, Is.EqualTo("Publisher 3"));
         }
 
         [Test, Order(4)]
@@ -62,7 +62,7 @@ namespace my_books_tests
             var result = publishersService.GetAllPublishers("name_desc", "", null);
 
             Assert.That(result.Count, Is.EqualTo(5));
-            Assert.That(result.FirstOrDefault().Name, Is.EqualTo("Publisher 6"));
+            Assert.That(result.FirstOrDefault()!.Name, Is.EqualTo("Publisher 6"));
         }
 
         [Test, Order(5)]
@@ -70,8 +70,8 @@ namespace my_books_tests
         {
             var result = publishersService.GetPublisherById(1);
 
-            Assert.That(result.Id, Is.EqualTo(1));
-            Assert.That(result.Name, Is.EqualTo("Publisher 1"));
+            Assert.That(result!.Id, Is.EqualTo(1));
+            Assert.That(result!.Name, Is.EqualTo("Publisher 1"));
         }
 
         [Test, Order(6)]
@@ -113,11 +113,11 @@ namespace my_books_tests
         {
             var result = publishersService.GetPublisherData(1);
 
-            Assert.That(result.Name, Is.EqualTo("Publisher 1"));
-            Assert.That(result.BookAuthors, Is.Not.Empty);
-            Assert.That(result.BookAuthors.Count, Is.GreaterThan(0));
+            Assert.That(result!.Name, Is.EqualTo("Publisher 1"));
+            Assert.That(result!.BookAuthors, Is.Not.Empty);
+            Assert.That(result!.BookAuthors.Count, Is.GreaterThan(0));
 
-            var firstBookName = result.BookAuthors.OrderBy(n => n.BookName).FirstOrDefault().BookName;
+            var firstBookName = result.BookAuthors.OrderBy(n => n.BookName).FirstOrDefault()!.BookName;
             Assert.That(firstBookName, Is.EqualTo("Book 1 Title"));
         }
 
@@ -128,7 +128,7 @@ namespace my_books_tests
 
             var publisherBefore = publishersService.GetPublisherById(publisherId);
             Assert.That(publisherBefore, Is.Not.Null);
-            Assert.That(publisherBefore.Name, Is.EqualTo("Publisher 6"));
+            Assert.That(publisherBefore!.Name, Is.EqualTo("Publisher 6"));
 
             publishersService.DeletePublisherById(publisherId);
 

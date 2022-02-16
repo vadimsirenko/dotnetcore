@@ -35,7 +35,7 @@ namespace my_books.Exceptions
                         {
                             StatusCode = context.Response.StatusCode,
                             Message = contextFeature.Error.Message,
-                            Path = contextRequest.Path
+                            Path = contextRequest!.Path
                         }.ToString();
                         
                         logger.LogError(errorVMString);

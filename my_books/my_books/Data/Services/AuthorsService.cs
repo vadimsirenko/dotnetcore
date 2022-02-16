@@ -25,7 +25,7 @@ namespace my_books.Data.Services
             _context.SaveChanges();
         }
 
-        public AuthorWithBooksVM GetAuthorWithBooks(int authorId)
+        public AuthorWithBooksVM? GetAuthorWithBooks(int authorId)
         {
             var _author = _context.Authors.Where(n => n.Id == authorId).Select(n => new AuthorWithBooksVM()
             {
