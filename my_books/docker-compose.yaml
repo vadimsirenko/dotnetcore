@@ -34,11 +34,11 @@ services:
   my_books:
     build: 
       context: my_books/
-      ## args:
-      ##   HTTP_PROXY: "http://spb99-prx-a.gazprom-neft.local:8090"
-      ##   HTTPS_PROXY: "http://spb99-prx-a.gazprom-neft.local:8090"
-      ##   http_proxy: "http://spb99-prx-a.gazprom-neft.local:8090"
-      ##   https_proxy: "http://spb99-prx-a.gazprom-neft.local:8090"
+      #args:
+      #  HTTP_PROXY: "http://spb99-prx-a.gazprom-neft.local:8090"
+      #  HTTPS_PROXY: "http://spb99-prx-a.gazprom-neft.local:8090"
+      #  http_proxy: "http://spb99-prx-a.gazprom-neft.local:8090"
+      #  https_proxy: "http://spb99-prx-a.gazprom-neft.local:8090"
     image: vasire/my_book
     depends_on:
       - mssql-server
@@ -52,29 +52,29 @@ services:
     volumes:
       - ${APPDATA}\microsoft\UserSecrets\:/root/.microsoft/usersecrets
       - ${USERPROFILE}\.aspnet\https\:/root/.aspnet/https/
-  keycloak:
-    container_name: keycloak_app
-    image: jboss/keycloak    
-    depends_on:
-      - mssql-server
-    restart: always
-    ports:
-      - "8080:8080"
-      - "8443:8443"
-    volumes:
-      - ${USERPROFILE}\.aspnet\https\keycloak.vasire.crt:/etc/x509/https/tls.crt   # map certificates to container
-      - ${USERPROFILE}\.aspnet\https\keycloak.vasire.key:/etc/x509/https/tls.key   # map key certificates to container
-    environment:
-      KEYCLOAK_USER: keycloakadmin
-      KEYCLOAK_PASSWORD: Tr@nsF0rmer
-      KEYCLOAK_HTTP_PORT: 8080
-      KEYCLOAK_HTTPS_PORT: 8443
-      KEYCLOAK_HOSTNAME: keycloak.vasire.com
-      DB_VENDOR: mssql
-      DB_ADDR: mssql-server
-      DB_USER: sa
-      DB_PASSWORD: Tr@nsF0rmer
-      DB_DATABASE: Keycloak
+  #keycloak:
+  #  container_name: keycloak_app
+  #  image: jboss/keycloak    
+  #  depends_on:
+  #    - mssql-server
+  #  restart: always
+  #  ports:
+  #    - "8080:8080"
+  #    - "8443:8443"
+  #  volumes:
+  #    - ${USERPROFILE}\.aspnet\https\keycloak.vasire.crt:/etc/x509/https/tls.crt   # map certificates to container
+  #    - ${USERPROFILE}\.aspnet\https\keycloak.vasire.key:/etc/x509/https/tls.key   # map key certificates to container
+  #  environment:
+  #    KEYCLOAK_USER: keycloakadmin
+  #    KEYCLOAK_PASSWORD: Tr@nsF0rmer
+  #    KEYCLOAK_HTTP_PORT: 8080
+  #    KEYCLOAK_HTTPS_PORT: 8443
+  #    KEYCLOAK_HOSTNAME: keycloak.vasire.com
+  #    DB_VENDOR: mssql
+  #    DB_ADDR: mssql-server
+  #    DB_USER: sa
+  #    DB_PASSWORD: Tr@nsF0rmer
+  #    DB_DATABASE: Keycloak
 volumes:
   sqlsystem:
   sqldata:
