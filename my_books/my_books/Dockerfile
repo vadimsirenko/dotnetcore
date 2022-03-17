@@ -11,9 +11,9 @@ WORKDIR /source
 COPY *.csproj ./
 
 # Установка сертификата Proxy
-#COPY GPNRootCA.cer /usr/local/share/ca-certificates/GPNRootCA.cer
-#RUN openssl x509 -inform PEM -in '/usr/local/share/ca-certificates/GPNRootCA.cer' -out '/usr/local/share/ca-certificates/GPNRootCA.crt'
-#RUN update-ca-certificates
+COPY GPNRootCA.cer /usr/local/share/ca-certificates/GPNRootCA.cer
+RUN openssl x509 -inform PEM -in '/usr/local/share/ca-certificates/GPNRootCA.cer' -out '/usr/local/share/ca-certificates/GPNRootCA.crt'
+RUN update-ca-certificates
 
 RUN dotnet restore
 

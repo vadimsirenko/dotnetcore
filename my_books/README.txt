@@ -45,3 +45,5 @@
 
   dotnet dev-certs https --clean
 dotnet dev-certs https --trust -ep $env:USERPROFILE\.aspnet\https\my_books.pfx -p "P@ssw0rd"
+
+openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 -nodes -keyout keycloak.vasire.key -out keycloak.vasire.crt -subj "/CN=keycloak.vasire.com" -addext "subjectAltName=DNS:keycloak.vasire.com,DNS:www.keycloak.vasire.net"
